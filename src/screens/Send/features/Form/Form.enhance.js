@@ -124,9 +124,9 @@ export const enhance = (WrappedComp) => (props) => {
 
   const handleSend = async (payload) => {
     try {
-      // if (disabledForm) {
-      //   return;
-      // }
+      if (disabledForm) {
+        return;
+      }
       await setIsSending(true);
       if (isSend) {
         dispatch(requestUpdateMetrics(ANALYTICS.ANALYTIC_DATA_TYPE.SEND));

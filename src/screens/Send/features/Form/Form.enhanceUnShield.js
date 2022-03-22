@@ -363,30 +363,12 @@ export const enhanceUnshield = (WrappedComp) => (props) => {
       }
       /**---------------------------*/
 
-
-      console.log({ tokenPayments, prvPayments, userFee, originalFee });
-      return; 
-
       const res = await accountService.createAndSendPrivacyToken({
         wallet,
         account,
         fee: originalFee,
-        tokenPayments: [
-          {
-            PaymentAddress: tempAddress,
-            Amount: originalAmount,
-          },
-        ],
-        prvPayments: [
-          {
-            PaymentAddress: masterAddress,
-            Amount: userFee,
-          },
-          {
-            PaymentAddress: tempAddress,
-            Amount: originalFee,
-          },
-        ],
+        tokenPayments,
+        prvPayments,
         txType: ACCOUNT_CONSTANT.TX_TYPE.SEND,
         tokenID: selectedPrivacy?.tokenId,
         txHashHandler,
