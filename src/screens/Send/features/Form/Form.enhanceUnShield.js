@@ -52,6 +52,7 @@ export const enhanceUnshield = (WrappedComp) => (props) => {
     fast2x,
     totalFeeText,
     isUnShield,
+    isUseTokenFee,
   } = useSelector(feeDataSelector);
   const dev = useSelector(devSelector);
   const { isUnshieldPegPRV } = props;
@@ -135,18 +136,29 @@ export const enhanceUnshield = (WrappedComp) => (props) => {
       if (isPolygon) burningRequestMeta = BurningPLGRequestMeta;
       if (isFantom) burningRequestMeta = BurningFantomRequestMeta;
 
+
+      /**--> Get payment info <--*/
+      const paymentInfo = [{
+        paymentAddress: masterAddress,
+        amount: userFee,
+      }];
+      let prvPayments = [];
+      let tokenPayments = [];
+      if (isUseTokenFee) {
+        tokenPayments = paymentInfo;
+      } else {
+        prvPayments = paymentInfo;
+      }
+      /**---------------------------*/
+
       const res = await accountService.createBurningRequest({
         wallet,
         account,
         fee: feeForBurn,
         tokenId,
         burnAmount: originalAmount,
-        prvPayments: [
-          {
-            paymentAddress: masterAddress,
-            amount: userFee,
-          },
-        ],
+        prvPayments,
+        tokenPayments,
         info,
         remoteAddress: paymentAddress,
         txHashHandler,
@@ -315,6 +327,45 @@ export const enhanceUnshield = (WrappedComp) => (props) => {
         throw Error('Can not create a temp address');
       }
       const { FeeAddress: masterAddress } = userFeesData;
+
+      /**--> Get payment info <--*/
+      const paymentInfo = [
+        {
+          PaymentAddress: masterAddress,
+          Amount: userFee,
+        }
+      ];
+
+      let prvPayments = [
+        {
+          PaymentAddress: tempAddress,
+          Amount: originalFee,
+        },
+      ];
+
+      let tokenPayments = [
+        {
+          PaymentAddress: tempAddress,
+          Amount: originalAmount,
+        },
+      ];
+
+      if (isUseTokenFee) {
+        tokenPayments = [
+          ...tokenPayments,
+          ...paymentInfo
+        ];
+      } else {
+        prvPayments = [
+          ...prvPayments,
+          ...paymentInfo
+        ];
+      }
+      /**---------------------------*/
+
+
+      console.log({ tokenPayments, prvPayments, userFee, originalFee });
+      return; 
 
       const res = await accountService.createAndSendPrivacyToken({
         wallet,
