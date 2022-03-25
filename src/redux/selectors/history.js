@@ -127,6 +127,7 @@ export const mappingTxPTokenSelector = createSelector(
       outchainFee,
       receivedAmount,
       tokenFee,
+      isUnShieldByPToken,
     } = txp;
     const shouldRenderQrShieldingAddress =
       isShieldTx &&
@@ -181,7 +182,7 @@ export const mappingTxPTokenSelector = createSelector(
       }),
       outchainFeeStr: renderAmount({
         amount: outchainFee,
-        pDecimals: PRV.pDecimals,
+        pDecimals: isUnShieldByPToken ? pDecimals : PRV.pDecimals,
         decimalDigits,
       }),
       receivedFundsStr,
@@ -478,6 +479,7 @@ export const historyDetailFactoriesSelector = createSelector(
           outchainFeeStr,
           memo,
           network,
+          isUnShieldByPToken,
         } = tx;
 
         return [
@@ -499,7 +501,7 @@ export const historyDetailFactoriesSelector = createSelector(
           },
           {
             label: 'Outchain fee',
-            value: `${outchainFeeStr} ${PRV.symbol}`,
+            value: `${outchainFeeStr} ${isUnShieldByPToken ? selectedPrivacy.symbol : PRV.symbol}`,
             disabled: !outchainFee,
           },
           {
