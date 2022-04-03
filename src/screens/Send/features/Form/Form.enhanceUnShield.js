@@ -156,7 +156,7 @@ export const enhanceUnshield = (WrappedComp) => (props) => {
         account,
         fee: feeForBurn,
         tokenId,
-        burnAmount: originalAmount,
+        burnAmount: String(originalAmount),
         prvPayments,
         tokenPayments,
         info,
@@ -188,7 +188,7 @@ export const enhanceUnshield = (WrappedComp) => (props) => {
         prvPayments: [
           {
             paymentAddress: masterAddress,
-            amount: userFee,
+            amount: String(userFee),
           },
         ],
         info,
@@ -332,21 +332,21 @@ export const enhanceUnshield = (WrappedComp) => (props) => {
       const paymentInfo = [
         {
           PaymentAddress: masterAddress,
-          Amount: userFee,
+          Amount: String(userFee),
         }
       ];
 
       let prvPayments = [
         {
           PaymentAddress: tempAddress,
-          Amount: originalFee,
+          Amount: String(originalFee),
         },
       ];
 
       let tokenPayments = [
         {
           PaymentAddress: tempAddress,
-          Amount: originalAmount,
+          Amount: String(originalAmount),
         },
       ];
 

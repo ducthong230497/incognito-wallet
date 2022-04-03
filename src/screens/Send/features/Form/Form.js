@@ -276,7 +276,7 @@ const SendForm = (props) => {
                   isUnShield ? styled.submitBtnUnShield : null,
                 ]}
                 style={{marginTop: 24}}
-                // disabled={disabledForm || isDisabled}
+                disabled={disabledForm || isDisabled}
                 onPress={handleSubmit(
                   submitHandler
                 )}
