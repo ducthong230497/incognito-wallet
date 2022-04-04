@@ -131,7 +131,7 @@ jobs:
       - login_appcenter
       - get_app_info
       - run: yarn deployAndroid:next2
-      - run: curl -X POST -H "Content-type:application/json" --data '{"text":"'"Deploy Android $APP_VERSION next release successfully! $LAST_COMMIT_MESSAGE"'"}' $SLACK_HOOK
+      - run: curl -X POST -H "Content-type:application/json" --data '{"text":"'"Deploy Android $APP_VERSION next2 release successfully! $LAST_COMMIT_MESSAGE"'"}' $SLACK_HOOK
   push_ios_next2:
     executor:
       name: rn/linux_android
@@ -141,7 +141,7 @@ jobs:
       - login_appcenter
       - get_app_info
       - run: yarn deployIOS:next2
-      - run: curl -X POST -H 'Content-type:application/json' --data '{"text":"'"Deploy iOS $APP_VERSION next release successfully! $LAST_COMMIT_MESSAGE"'"}' $SLACK_HOOK
+      - run: curl -X POST -H 'Content-type:application/json' --data '{"text":"'"Deploy iOS $APP_VERSION next2 release successfully! $LAST_COMMIT_MESSAGE"'"}' $SLACK_HOOK
   push_android_next3:
     executor:
       name: rn/linux_android
@@ -151,7 +151,7 @@ jobs:
       - login_appcenter
       - get_app_info
       - run: yarn deployAndroid:next3
-      - run: curl -X POST -H "Content-type:application/json" --data '{"text":"'"Deploy Android $APP_VERSION next release successfully! $LAST_COMMIT_MESSAGE"'"}' $SLACK_HOOK
+      - run: curl -X POST -H "Content-type:application/json" --data '{"text":"'"Deploy Android $APP_VERSION next3 release successfully! $LAST_COMMIT_MESSAGE"'"}' $SLACK_HOOK
   push_ios_next3:
     executor:
       name: rn/linux_android
@@ -161,7 +161,7 @@ jobs:
       - login_appcenter
       - get_app_info
       - run: yarn deployIOS:next3
-      - run: curl -X POST -H 'Content-type:application/json' --data '{"text":"'"Deploy iOS $APP_VERSION next release successfully! $LAST_COMMIT_MESSAGE"'"}' $SLACK_HOOK
+      - run: curl -X POST -H 'Content-type:application/json' --data '{"text":"'"Deploy iOS $APP_VERSION next3 release successfully! $LAST_COMMIT_MESSAGE"'"}' $SLACK_HOOK
   push_android_production:
     executor:
       name: rn/linux_android

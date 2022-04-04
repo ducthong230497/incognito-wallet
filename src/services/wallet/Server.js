@@ -191,6 +191,30 @@ const BETA_66 = {
   web3Configs: WEB3_CONSTANT.WEB3_MAINNET_CONFIGS,
 };
 
+const BETA_2 = {
+  id: 'beta2',
+  default: false,
+  address: MAINNET_FULLNODE,
+  username: '',
+  password: '',
+  name: 'Beta2',
+  coinServices: 'https://api-coinservice-beta2.incognito.org',
+  pubsubServices: 'https://api-coinservice-beta2.incognito.org/txservice',
+  requestServices: 'https://api-coinservice-beta2.incognito.org',
+  apiServices: 'https://api-service.incognito.org',
+  shardNumber: DEFAULT_SHARD_NUMBER,
+  IncContractAddress: '0x43D037A562099A4C2c95b1E2120cc43054450629',
+  IncBSCContractAddress: '0x43D037A562099A4C2c95b1E2120cc43054450629',
+  explorer: 'https://explorer.incognito.org',
+  tradeServices: 'https://api-coinservice-beta2.incognito.org',
+  portalServices: 'https://api-portalv4.incognito.org',
+  webviewChartServices: 'https://chart-webview.incognito.org',
+  bscConfigs: BSC_CONSTANT.BSC_MAINNET_CONFIGS,
+  pancakeConfigs: PANCAKE_CONSTANTS.PANCAKE_MAINNET_CONFIGS,
+  uniConfigs: UNI_CONSTANTS.UNI_MAINNET_CONFIGS,
+  web3Configs: WEB3_CONSTANT.WEB3_MAINNET_CONFIGS,
+};
+
 const DEFAULT_LIST_SERVER = [
   LOCAL_SERVER,
   TEST_NET_SERVER,
@@ -201,6 +225,7 @@ const DEFAULT_LIST_SERVER = [
   BETA_SERVER,
   PORTAL_SERVER,
   BETA_66,
+  BETA_2,
 ];
 
 export const KEY = {

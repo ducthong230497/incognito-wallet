@@ -336,7 +336,7 @@ const GenQRCode = (props) => {
     }
     return (
       <View2>
-        <ScrollViewBorder style={styled.scrollview}>
+        <ScrollViewBorder contentContainerStyle={styled.scrollview}>
           {isPRV && renderOptionsPRV()}
           <Extra
             {...{

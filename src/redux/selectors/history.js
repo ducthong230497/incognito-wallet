@@ -17,8 +17,18 @@ import {
 } from '@src/redux/utils/history';
 import { PRV } from '@src/constants/common';
 import { CONSTANT_CONFIGS, CONSTANT_COMMONS } from '@src/constants';
+import BigNumber from 'bignumber.js';
 import { selectedPrivacy } from './selectedPrivacy';
 import { burnerAddressSelector } from './account';
+
+export const renderNoClipAmount = (params) => {
+  const { amount, pDecimals } = params;
+  return (
+    new BigNumber(amount || 0)
+      .dividedBy(Math.pow(10, pDecimals || 9))
+      .toFixed() || ''
+  );
+};
 
 const renderAmount = (params) => {
   const { amount, pDecimals, decimalDigits } = params;
