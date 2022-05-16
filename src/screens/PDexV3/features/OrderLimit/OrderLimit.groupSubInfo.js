@@ -29,20 +29,20 @@ const GroupSubInfo = () => {
     <View style={styled.container}>
       <Tabs rootTabID={ROOT_TAB_SUB_INFO}>
         <View
+            tabID={TAB_OPEN_ORDER}
+            label="Open orders"
+            onChangeTab={() => null}
+            upperCase={false}
+        >
+          <History {...openOrders} />
+        </View>
+        <View
           tabID={TAB_ORDER_BOOK}
           label="Order book"
           upperCase={false}
           onChangeTab={() => null}
         >
-          <OrderBook />
-        </View>
-        <View
-          tabID={TAB_OPEN_ORDER}
-          label="Open orders"
-          onChangeTab={() => null}
-          upperCase={false}
-        >
-          <History {...openOrders} />
+          {/*<OrderBook />*/}
         </View>
         <View
           tabID={TAB_HISTORY_ID}
@@ -50,7 +50,7 @@ const GroupSubInfo = () => {
           onChangeTab={() => null}
           upperCase={false}
         >
-          <History {...orderHistory} />
+          {/*<History {...orderHistory} />*/}
         </View>
       </Tabs>
     </View>

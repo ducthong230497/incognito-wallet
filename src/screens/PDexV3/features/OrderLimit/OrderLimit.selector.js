@@ -268,6 +268,54 @@ export const orderLimitDataSelector = createSelector(
       totalAmountToken = {};
     const calculating = isFetching;
     let disabledBtn = calculating || !isValid(formConfigs.formName)(state);
+    // console.log(`adadad orderLimitDataSelector calculating: ${calculating}, formConfigs.formName: ${formConfigs.formName}, isValid(formConfigs.formName)(state): ${isValid(formConfigs.formName)(state)}`)
+
+    // TAB_BUY_LIMIT_ID
+    let totalAmountTokenSell = sellInputAmount?.tokenData;
+    let buyAmount = buyInputAmount?.amount;
+    const originalbuyAmount = convert.toOriginalAmount(
+        buyAmount,
+        sellInputAmount?.pDecimals,
+    );
+    buyAmount = convert.toHumanAmount(
+        originalbuyAmount,
+        sellInputAmount?.pDecimals,
+    );
+    let totalAmountBuy = new BigNumber(buyAmount)
+        .multipliedBy(new BigNumber(customRate))
+        .toNumber();
+    let totalOriginalAmountBuy = convert.toOriginalAmount(
+        totalAmountBuy,
+        totalAmountTokenSell?.pDecimals,
+    );
+    let totalAmountStrBuy = format.amountVer2(
+        totalOriginalAmountBuy,
+        totalAmountTokenSell?.pDecimals,
+    );
+    ///////////
+    // TAB_SELL_LIMIT_ID
+    let totalAmountTokenBuy = buyInputAmount?.tokenData;
+    let sellAmount = sellInputAmount?.amount;
+    const originalSellAmount = convert.toOriginalAmount(
+        sellAmount,
+        sellInputAmount?.pDecimals,
+    );
+    sellAmount = convert.toHumanAmount(
+        originalSellAmount,
+        sellInputAmount?.pDecimals,
+    );
+    let totalAmountSell = new BigNumber(sellAmount)
+        .multipliedBy(new BigNumber(customRate))
+        .toNumber();
+    let totalOriginalAmountSell = convert.toOriginalAmount(
+        totalAmountSell,
+        totalAmountTokenBuy?.pDecimals,
+    );
+    let totalAmountStrSell = format.amountVer2(
+        totalOriginalAmountSell,
+        totalAmountTokenBuy?.pDecimals,
+    );
+    ///////////
     switch (activedTab) {
     case TAB_BUY_LIMIT_ID: {
       mainColor = buyColor;
@@ -336,9 +384,17 @@ export const orderLimitDataSelector = createSelector(
     }
     totalAmountData = {
       totalAmountToken,
+      totalAmountTokenBuy,
+      totalAmountTokenSell,
       totalOriginalAmount,
+      totalOriginalAmountBuy,
+      totalOriginalAmountSell,
       totalAmountStr,
+      totalAmountStrBuy,
+      totalAmountStrSell,
       totalAmount,
+      totalAmountBuy,
+      totalAmountSell,
       totalStr: `${totalAmountStr} ${totalAmountToken?.symbol}`,
     };
     const token1: SelectedPrivacy = pool?.token1;
@@ -357,6 +413,10 @@ export const orderLimitDataSelector = createSelector(
     const prvBalance = format.amountVer2(prv?.amount || 0, PRV.pDecimals);
     const prvBalanceStr = `${prvBalance} ${PRV.symbol}`;
     const balanceStr = sellInputAmount?.balanceStr;
+    const balanceStr2 = buyInputAmount?.balanceStr;
+    // console.log(`adadad orderLimitDataSelector prvBalanceStr: ${prvBalance}`)
+    // console.log(`adadad orderLimitDataSelector balanceStr: ${balanceStr}`)
+    // console.log(`adadad orderLimitDataSelector balanceStr2: ${balanceStr2}`)
     const poolSizeStr = `${sellInputAmount?.poolValueStr} ${sellInputAmount?.symbol} + ${buyInputAmount?.poolValueStr} ${buyInputAmount?.symbol}`;
     const editableInput = !isFetching;
 
@@ -385,6 +445,7 @@ export const orderLimitDataSelector = createSelector(
       prvBalance,
       prvBalanceStr,
       balanceStr,
+      balanceStr2,
       poolSizeStr,
       disabledBtn,
       percent,

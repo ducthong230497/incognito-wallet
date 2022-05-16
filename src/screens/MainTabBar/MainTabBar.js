@@ -20,20 +20,6 @@ import { styled } from './MainTabBar.styled';
 
 const TabNavigator = createMaterialBottomTabNavigator(
   {
-    Market: {
-      screen: Market,
-      navigationOptions: {
-        tabBarIcon: ({ focused }) => <MarketIcon active={focused} />,
-        tabBarLabel: <Text style={styled.label}>Markets</Text>,
-      },
-    },
-    HomeLP: {
-      screen: HomeLP,
-      navigationOptions: {
-        tabBarIcon: ({ focused }) => <LiquidityIcon active={focused} />,
-        tabBarLabel: <Text style={styled.label}>Earn</Text>,
-      },
-    },
     Trade: {
       screen: TabTrade,
       navigationOptions: {
@@ -41,22 +27,36 @@ const TabNavigator = createMaterialBottomTabNavigator(
         tabBarLabel: <Text style={styled.label}>Trade</Text>,
       },
     },
+    Market: {
+      screen: () => (<></>),
+      navigationOptions: {
+        tabBarIcon: ({ focused }) => <MarketIcon active={focused} />,
+        tabBarLabel: <Text style={styled.label}>Markets</Text>,
+      },
+    },
+    HomeLP: {
+      screen: () => (<></>),
+      navigationOptions: {
+        tabBarIcon: ({ focused }) => <LiquidityIcon active={focused} />,
+        tabBarLabel: <Text style={styled.label}>Earn</Text>,
+      },
+    },
     Assets: {
-      screen: TabAssets,
+      screen: () => (<></>),
       navigationOptions: {
         tabBarIcon: ({ focused }) => <AssetsIcon active={focused} />,
         tabBarLabel: <Text style={styled.label}>Wallet</Text>,
       },
     },
     PrivacyApps: {
-      screen: TabPrivacyApps,
+      screen: () => (<></>),
       navigationOptions: {
         tabBarIcon: ({ focused }) => <PrivacyAppsIcon active={focused} />,
         tabBarLabel: <Text style={styled.label}>Apps</Text>,
       },
     },
     More: {
-      screen: More,
+      screen: () => (<></>),
       navigationOptions: {
         tabBarIcon: ({ focused }) => <MoreIcon active={focused} />,
         tabBarLabel: <Text style={styled.label}>More</Text>,
