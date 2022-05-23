@@ -105,7 +105,7 @@ const enhance = (WrappedComp) => (props) => {
   };
   const onRefresh = () => {
     dispatch(actionInit(true, true));
-    dispatch(actionFetchOrdersHistory(HISTORY_ORDERS_STATE));
+    // dispatch(actionFetchOrdersHistory(HISTORY_ORDERS_STATE));
     dispatch(actionFetchOrdersHistory(OPEN_ORDERS_STATE));
   };
   const callback = async (poolId) => {
